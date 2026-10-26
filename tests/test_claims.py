@@ -76,7 +76,8 @@ def test_series_limits_signal():
 
 def test_series_limits_difficulty():
     rows = {r["x"]: r for r in ev.series_limits() if r["mechanism"] == "schwierigkeit"}
-    assert [P(rows[x]["limit"]) for x in C.SERIES_SDS] == ["100,0 %", "97,5 %", "83,7 %", "74,3 %", "68,8 %"]
+    assert [P(rows[x]["limit"]) for x in C.SERIES_SDS[:4]] == ["100,0 %", "97,5 %", "83,7 %", "74,3 %"]
+    assert rows[20]["limit"] == pytest.approx(0.6875, abs=1e-9)                       # genau 11/16: die Rundung auf eine Stelle liegt auf der Grenze und fällt je Plattform auf 68,7 oder 68,8 %
     assert [P(rows[x]["n11"]) for x in C.SERIES_SDS] == ["75,3 %", "74,3 %", "71,7 %", "68,8 %", "66,2 %"]
     assert [P(rows[x]["n101"]) for x in C.SERIES_SDS] == ["97,9 %", "92,2 %", "81,3 %", "73,4 %", "68,4 %"]
     assert [P(rows[x]["n1001"]) for x in C.SERIES_SDS] == ["100,0 %", "97,0 %", "83,4 %", "74,2 %", "68,7 %"]
