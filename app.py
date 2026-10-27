@@ -67,7 +67,7 @@ with st.expander("So wird gerechnet", expanded=True):
 1. **Unabhängig:** die Zahl der richtigen Urteile ist binomialverteilt (n, q); die Mehrheit liegt richtig, wenn mehr als n/2 richtig liegen. n ist ungerade, damit es kein Unentschieden gibt.
 2. **Gemeinsames Signal:** mit Wahrscheinlichkeit ρ folgen alle demselben Hinweis, der mit Wahrscheinlichkeit q stimmt; sonst urteilen sie unabhängig. Die Wahrscheinlichkeit ist ρ·q + (1 − ρ)·(unabhängiger Wert).
 3. **Schwierige Fälle:** die Trefferquote p des Falls ist Beta-verteilt mit Mittel q und der eingestellten Streuung; innerhalb eines Falls urteilen alle unabhängig (Beta-Binomial). Der Grenzwert ist die Wahrscheinlichkeit, dass p über 50 % liegt.
-4. **Verschieden gute Gutachter:** die Trefferquoten liegen gleichmäßig zwischen q − δ und q + δ (deterministisch verteilt), die Zahl der Richtigen ist Poisson-Binomial-verteilt (exakte Faltung). **Gewichtet:** Stimme mal ln(q/(1−q)), gerundet auf Hundertstel; ein Gutachter unter 50 % bekommt ein negatives Gewicht, seine Stimme wird umgedreht.
+4. **Verschieden gute Gutachter:** die Trefferquoten liegen gleichmäßig zwischen q − δ und q + δ (deterministisch verteilt; bei q + δ über 99 % auf 99 % gekappt), die Zahl der Richtigen ist Poisson-Binomial-verteilt (exakte Faltung). **Gewichtet:** Stimme mal ln(q/(1−q)), gerundet auf Hundertstel; ein Gutachter unter 50 % bekommt ein negatives Gewicht, seine Stimme wird umgedreht.
         """
     )
 
@@ -174,7 +174,7 @@ st.markdown(
 |---|---|---|
 | **Zwei Möglichkeiten, eine ist richtig** | Bei mehr als zwei Ergebnissen gilt der Satz in anderer Form (die Mehrheit ist schwerer zu definieren); die Demo behandelt nur den Fall richtig oder falsch. | diese Demo |
 | **Die Trefferquote ist bekannt und für alle Fälle gleich** | In der Praxis kennt man q nicht, und sie hängt vom Fall ab (Mechanismus „schwierige Fälle“). | diese Demo (dritter Mechanismus) |
-| **Unabhängige Gutachter** | Gemeinsame Quellen, Absprachen und Nachahmung begrenzen die Mehrheit auf einen Grenzwert (Mechanismen „gemeinsamer Hinweis“ und „schwierige Fälle“); mehr Gutachter helfen dann nicht mehr. | diese Demo |
+| **Unabhängige Gutachter** | Ein gemeinsamer Hinweis oder schwierige Fälle begrenzen die Mehrheit auf einen Grenzwert; ob echte Abhängigkeit (Absprachen, Nachahmung) das tut, hängt von ihrer Art ab. | diese Demo |
 | **Ehrliche Urteile** | Wer weiß, wie abgestimmt wird, kann taktisch urteilen; hier gibt jeder sein bestes Urteil ab. | `taktisch-waehlen-demo` |
 | **Gewichte aus bekannten Trefferquoten** | Das gewichtete Votum braucht die Trefferquoten der Gutachter vorab; mit geschätzten Werten fällt der Gewinn kleiner aus, mit falschen kann er negativ werden. | diese Demo (letzter Mechanismus) |
 | **Modell, kein Befund über Gremien** | Die Zahlen sagen, was die Rechnung unter den Annahmen liefert, nicht, wie gut echte Gremien urteilen. | – |

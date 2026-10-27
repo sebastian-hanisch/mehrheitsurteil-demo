@@ -49,7 +49,7 @@ PRESET_HELP = {
     "Elf Gutachter": "Voreinstellung: elf Gutachter mit 55 % Trefferquote; alle fünf Mechanismen mit mittleren Werten (gemeinsamer Hinweis 20 %, Streuung der Fälle 10 Punkte, Spanne der Gutachter ±10 Punkte).",
     "Weisheit der Menge": "101 unabhängige Gutachter, jeder nur knapp besser als der Zufall (55 %): die Mehrheit liegt in 84,4 % richtig. Das ist der Geschworenensatz von Condorcet.",
     "Schlechter als der Zufall": "101 unabhängige Gutachter mit 45 % Trefferquote: die Mehrheit liegt nur noch in 15,6 % richtig; mehr Gutachter machen es schlechter.",
-    "Gemeinsamer Hinweis": "Folgen in 30 % der Fälle alle demselben Hinweis (60 % Trefferquote), bleibt die Mehrheit bei 88 % stehen, egal wie viele Gutachter es sind; bei 101 sind es 86,5 %.",
-    "Schwierige Fälle": "Leichte Fälle löst jeder, schwere kaum einer: bei 15 Punkten Streuung liegt die Mehrheit bei 101 Gutachtern in 73,4 % richtig, mehr als 74,3 % erreicht sie nie.",
+    "Gemeinsamer Hinweis": "Folgen in 30 % der Fälle alle demselben Hinweis (60 % Trefferquote), kommt die Mehrheit nie über 88 % hinaus, egal wie viele Gutachter es sind; bei 101 sind es 86,5 %.",
+    "Schwierige Fälle": "Leichte Fälle löst jeder, schwere kaum einer: bei 15 Punkten Streuung liegt die Mehrheit bei 101 Gutachtern in 73,4 % richtig, mehr als 74,3 % erreicht sie in diesem Modell nie.",
     "Verschieden gute Gutachter": "Elf Gutachter mit Trefferquoten zwischen 30 und 90 %: die einfache Mehrheit liegt in 73,4 % richtig, die nach Trefferquote gewichtete in 90,7 %.",
 }
