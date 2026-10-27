@@ -57,6 +57,7 @@ Alle Werte sind **exakt gerechnet**, keine Stichproben; die Tests prüfen deshal
 - **Plan:** „exakte Binomialsumme; Simulation; Handfälle (n = 3)“. Umgesetzt: exakte Rechnung, **Aufzählung** mit Brüchen statt nur Simulation (die Stichproben bleiben als Gegenprobe der Erzählung), Handfälle mit n = 3.
 - **Neu gegenüber dem Plan:** die **Fallschwierigkeit** (Beta-Binomial) als zweiter Abhängigkeitsmechanismus, **verschieden gute Gutachter** mit einfacher und gewichteter Mehrheit und die Frage **„wie viele Gutachter?“** mit der Unterscheidung „nie“ (Grenzwert unter dem Ziel) und „nicht bis 201“.
 - **Vormessung:** „ρ = Anteil der Fälle, in denen alle dem gemeinsamen Signal folgen“ ist hier derselbe Mechanismus („Gemeinsames Signal“); die Zahlen stimmen überein (siehe Tabelle).
+- **Korrektur des Grenzwerts bei verschieden guten Gutachtern (unabhängige Aussagenprüfung 2026-10-27):** Der Grenzwert nahm das Mittel der ersten 201 Trefferquoten; bei einer Trefferquote von 50 % liegt es knapp unter 50 % und zeigte statt 50 % den Wert 0,0 %. Jetzt wird das Mittel der Verteilung selbst genommen (exakt, mit den Grenzen 1 und 99 %); bei 50 % ist der Grenzwert für jede Spanne 50 %.
 - **Reglerspanne:** Gutachter 1 bis 201 (ungerade), Trefferquote 40 bis 80 %, ρ 0 bis 60 %, Streuung 0 bis 25 Punkte, Spanne 0 bis 30 Punkte.
 
 ## Verifikation

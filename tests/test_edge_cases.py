@@ -67,3 +67,31 @@ def test_an_even_n_from_the_address_line_moves_up_to_the_next_odd_value():
     at2.query_params["n"] = "999"
     at2.run()
     assert not at2.exception and at2.slider(key="n_slider").value == C.N_MAX
+
+
+# --- Grenzwert bei verschieden guten Gutachtern (Befund der unabhängigen Aussagenprüfung 2026-10-27) ---------------------------------------------
+
+
+def test_mean_competence_is_exact_for_symmetric_and_clipped_spreads():
+    import mhu_scenario as S
+
+    assert S.mean_competence(0.5, 0.1) == pytest.approx(0.5) and S.mean_competence(0.62, 0.0) == 0.62
+    assert S.mean_competence(0.005, 0.0) == C.Q_FLOOR and S.mean_competence(0.999, 0.0) == C.Q_CEIL
+    # Spanne über die Obergrenze hinaus: [0,9; 1,1] gleichverteilt, ab 0,99 auf 0,99 gesetzt → ((0,99² − 0,9²)/2 + 0,99 · 0,11) / 0,2
+    assert S.mean_competence(1.0, 0.1) == pytest.approx(((0.99**2 - 0.9**2) / 2 + 0.99 * 0.11) / 0.2)
+    assert S.mean_competence(0.0, 0.1) == pytest.approx(((0.1**2 - 0.01**2) / 2 + 0.01 * 0.11) / 0.2)
+
+
+def test_mean_competence_matches_a_long_van_der_corput_sample():
+    import mhu_scenario as S
+
+    for q, delta in ((0.5, 0.3), (0.6, 0.2), (0.95, 0.1), (0.05, 0.1)):
+        assert float(S.competences(q, delta, 20001).mean()) == pytest.approx(S.mean_competence(q, delta), abs=2e-4)
+
+
+def test_limit_of_mixed_experts_at_q_fifty_is_one_half_for_every_spread():
+    for delta in (5, 10, 30):
+        a = ev.analyse(ev.Settings(n=11, q=50, rho=0, sd=0, delta=delta))
+        assert a.limits["gemischt"] == 0.5 and a.limits["unabhaengig"] == 0.5
+    assert ev.analyse(ev.Settings(n=11, q=55, rho=0, sd=0, delta=10)).limits["gemischt"] == 1.0
+    assert ev.analyse(ev.Settings(n=11, q=45, rho=0, sd=0, delta=10)).limits["gemischt"] == 0.0

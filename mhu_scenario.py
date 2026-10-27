@@ -21,3 +21,21 @@ def competences(q: float, delta: float, n: int) -> np.ndarray:
     Die Folge macht jede Anfangsstrecke gleichmäßig; die Kurven über der Gutachterzahl nehmen deshalb dieselben Gutachter nacheinander dazu."""
     u = np.array([2 * van_der_corput(j) - 1 for j in range(1, n + 1)])
     return np.clip(q + delta * u, C.Q_FLOOR, C.Q_CEIL)
+
+
+def mean_competence(q: float, delta: float) -> float:
+    """Mittel der Trefferquoten im Modell „verschieden gut“ für unendlich viele Gutachter: der Mittelwert von q + δ · u mit u gleichverteilt auf [−1, 1), in [Q_FLOOR, Q_CEIL] gelegt (stückweise Integration).
+    Die ersten n Werte der Van-der-Corput-Folge haben für endliches n ein Mittel, das knapp daneben liegt (bei q = 50 % knapp unter 50 %) und den Grenzwert bei q = 50 % kippen würde."""
+    if delta == 0:
+        return float(min(max(q, C.Q_FLOOR), C.Q_CEIL))
+    a, b = q - delta, q + delta
+    lo, hi = C.Q_FLOOR, C.Q_CEIL
+    total = 0.0
+    if a < lo:
+        total += lo * (min(b, lo) - a)
+    left, right = max(a, lo), min(b, hi)
+    if left < right:
+        total += (right * right - left * left) / 2
+    if b > hi:
+        total += hi * (b - max(a, hi))
+    return total / (b - a)

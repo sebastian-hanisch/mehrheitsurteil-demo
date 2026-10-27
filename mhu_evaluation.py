@@ -5,7 +5,7 @@ from dataclasses import dataclass
 
 import mhu_algorithm as A
 import mhu_constants as C
-from mhu_scenario import competences
+from mhu_scenario import competences, mean_competence
 
 
 def num(x: float, digits: int = 1) -> str:
@@ -88,10 +88,9 @@ def analyse(settings: Settings) -> Analysis:
         "unabhaengig": A.majority_independent(n, q), "signal": A.majority_common_signal(n, q, rho), "schwierigkeit": A.majority_difficulty(n, q, sd),
         "gemischt": simple[n], "gewichtet": weighted[n],
     }
-    mean_q = sum(qs[:C.PLOT_N[-1]]) / C.PLOT_N[-1]
     limits = {
         "unabhaengig": A.limit_independent(q), "signal": A.limit_common_signal(q, rho), "schwierigkeit": A.limit_difficulty(q, sd),
-        "gemischt": A.limit_independent(round(mean_q, 9)), "gewichtet": 1.0 if any(abs(x - 0.5) > 1e-12 for x in qs) else 0.5,
+        "gemischt": A.limit_independent(round(mean_competence(q, settings.deltaf), 9)), "gewichtet": 1.0 if any(abs(x - 0.5) > 1e-12 for x in qs) else 0.5,
     }
     needed = {
         "unabhaengig": A.needed_voters(TARGET, lambda m: A.majority_independent(m, q), limits["unabhaengig"]),
